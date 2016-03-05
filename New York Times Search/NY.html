@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<p id="searchBox"></p>
+
+<body>
+
+    <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+    <script type="text/javascript">
+
+    function runSearch() {
+        var searchTerm = $( "#searchBox" ).val();
+        console.log(runSearch);
+    }  
+
+        var queryURL = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchTerm + "&api-key=7ee3c51018c7515ea0d3c7dd93e9ac0b%3A0%3A74629245";
+
+        $.ajax({url: queryURL, method: 'GET'})
+            .done(function(response) {
+
+            console.log(queryURL);
+
+            console.log(response);
+
+            console.log(response.response.docs[0]);
+            
+            
+    });
+
+    </script>
+</body>
+
+</html>
