@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NY Times Search</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+    <div class="page-header">
+        <span class="glyphicons glyphicons-newspaper"></span><h1>New York Times Search</h1>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Parameter</h3>
+        </div>
+
+        <div class="panel-body">
+            <div action="">
+                <div class="form-group">
+                    <label for="query">Search Term:</label>
+                    <input type="text" class="form-control" id="query">
+                </div>
+                <div class="form-group">
+                    <label for="number">Number of Records to Retrieve:</label>
+                    <input type="text" class="form-control" id="f">
+                </div>
+                <div class="form-group">
+                    <label for="start">Start Year (Optional):</label>
+                    <input type="text" class="form-control" id="asdf">
+                </div>
+                <div class="form-group">
+                    <label for="end">End Year (Optional):</label>
+                    <input type="text" class="form-control" id="dfdf">
+                </div>
+
+                <button onclick="go();" id="lookup" class="btn btn-default">Search</button>
+                <button type="" class="btn btn-default">Clear Results</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Top Articles</h3>
+        </div>
+        <div class="panel-body">
+            <div id="Results"></div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                Basic panel example
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+</div>
+
+<script>"use strict";
+function go(){
+    console.log("went");
+    $.ajax({url:"http://api.nytimes.com/svc/search/v2/articlesearch.json",
+                type:"GET",
+                data: {"q":$("#query").val(),
+                    "api-key":"7ee3c51018c7515ea0d3c7dd93e9ac0b:0:74629245"},
+                invocationdata:{"query":$("#query").val()}})
+            .done(function(response) {
+                $.each(response.response.docs, function(i,v){
+                    console.log(v);
+                    $("#Results").append($("<div/>").addClass("panel panel-default")).append($("<div/>").addClass("panel-body")
+
+                            .append($("<div/>").text("Title:" + v.headline.main))
+                            .append($("<div/>").text("By:" + v.byline.original))
+                            .append($("<div/>").text("Url:" + v.web_url)));
+                });
+
+            })
+            .fail(function(response) {
+                $("#images").text("Error! Could not retrieve gifs for: " + this.invocationdata.animal);
+            })
+    return false;
+}
+</script>
+</body>
+</html>
