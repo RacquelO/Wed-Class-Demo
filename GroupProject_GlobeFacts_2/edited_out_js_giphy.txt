@@ -1,0 +1,87 @@
+
+
+
+
+
+
+
+        // make the AJAX request
+$.getJSON('http://api.giphy.com/v1/gifs/search?q=' + countrySelected + '&api_key=dc6zaTOxFJmzC&limit=1', function (data) {
+
+
+
+// do all this on success       
+            var itemsImage = [],
+                $ul;
+ 
+            $.each(data.data, function () {
+                //iterate through the returned data and build a list
+
+                	 itemsImage.push('<li class="table" id="' +  + '"><p>' + '</p></li>');
+
+                	 });
+            console.log('API' + data.data) ;
+
+            // append list to page
+            $ul = $('<ul />').appendTo('#contentImage');
+ 
+            //append list items to list
+            $ul.append(itemsImage);
+
+   });
+
+
+
+
+
+
+===========================
+
+
+ // make the AJAX request
+     	var xhr = $.get('http://api.giphy.com/v1/gifs/search?q=' + countrySelected + '&api_key=dc6zaTOxFJmzC&limit=5');
+			
+	xhr.done(function(data.data[4].images.fixed_height.url) {  
+	
+	var itemsImage = [],
+                $ul;
+	
+	 itemsImage.push('<img src =' + data.data[4].images.fixed_height.url + '/>' );
+	
+	});
+	
+                 // append list to page
+            $ul = $('<ul />').appendTo('#contentImage');
+ 
+            //append list items to list
+            $ul.append(itemsImage);
+
+
+
+
+
+
+
+
+=================most recent=================
+
+
+// make the AJAX request
+     	var xhr = $.get('http://api.giphy.com/v1/gifs/search?q=' + countrySelected + '&api_key=dc6zaTOxFJmzC&limit=5');
+	
+ var itemsImage = [],
+                $img;		
+
+xhr.done(function(data) { 
+
+itemsImage.push(data.data[4].images.fixed_height.url);
+ 
+console.log(itemsImage[0]);
+
+ });
+
+
+// append list to page
+            $img = $('<img />').appendTo('#contentImage');
+//append list items to list
+            $img.append(itemsImage[0]);

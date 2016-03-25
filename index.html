@@ -1,155 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>Two Player Rock Paper Scissor</title>
+    <meta charset="UTF-8">
+   <link rel="stylesheet" type="text/css" href="GroupProject_GlobeFacts_2/assets/css/reset.css">
 
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-	<!-- viewport -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="GroupProject_GlobeFacts_2/assets/css/style.css">
 
-	<!-- reset.css -->
-	<link rel="stylesheet" type="text/css" href="week_7_rockpaperscissor/assets/css/reset.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="week_7_rockpaperscissor/assets/css/style.css">
-	
-	<!-- LINK TO FIREBASE GOES HERE -->
-	<script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+    <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
 
+    <script type="text/javascript" src="GroupProject_GlobeFacts_2/assets/javascript/app.js"></script>
+
+    <title>Globe Facts</title>
 </head>
 <body>
 
-<div class="container">
-	<br>
-	<!-- Jumbotron -->
-	<div class="jumbotron">
-		<h1 class="text-center">Rock Paper Scissor</h1>
-	</div>
-
- <!-- form/submit name -->
-<form class="form-inline" align="center">
-  <div class="form-group">
-    <input type="text" class="form-control" id="nameInput" placeholder="Name">
+<div class ="container">
+  <div class="jumbotron">
+     <h1 style ="color:black;text-align:center;font-size:100px;">Globe Facts</h1>
+     <h2 style ="color:black;text-align:center;font-size:50px;">Get To Know Your World Better</h2>
   </div>
-  <button type="submit" class="btn btn-primary" id="startButton">Start</button>
-</form>
+        
+  <div class="panel panel-default" id = "section">
+        <div class="panel-heading" style="background-color:black">
+           <h3 class="panel-title" style ="color:white;font-weight:bold">Get Started</h3>
+        </div>
+    <div class="panel-body">
+      <label for="name">Country</label>
 
-  <!-- Columns -->
-	<div class="row">
-    <div class="col-md-4">
-      <div class="panel">
-        <p id="playerOneName"></p>
-        <br><br>
-        <button id="playerOneRock"></button>
-        <br><br>
-        <button id="playerOnePaper"></button>
-        <br><br>
-        <button id="playerOneScissor"></button>
-        <br><br><br>
-        <span id="playerOneWins"></span><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span><span id="playerOneLosses"></span>
+        <select class="form-control" id="countries">
+           <option>Select Country</option>
+           <option>Australia</option>
+           <option>Barbados</option>
+           <option>Brazil</option>
+           <option>Cambodia</option>
+           <option>Canada</option>
+           <option>Colombia</option>
+           <option>Costa Rica</option>
+           <option>Cuba</option>
+           <option>Dominican Republic</option>
+           <option>Ecuador</option>
+           <option>Egypt</option>
+           <option>France</option>
+           <option>Germany</option>
+           <option>Greece</option>
+           <option>Haiti</option>
+           <option>Kenya</option>
+           <option>United States of America</option>
+       </select>
+
+
+       <br />
+    
+      <label for="name">Facts</label>
+       <select class="form-control" id="facts">
+          <option>Select </option>
+          <option value="one">Life expectancy at birth</option>
+          <option value="two">Population in thousands</option>
+         
+
+      </select>
+      <br />
+      
+      <div id="buttons">
+        <button type="submit" class="btn btn-default" style ="background-color:green;color:white;" id="submit">Search</button>
+        <button type="button" class="btn btn-primary" id ="add">Add More Facts</button>        
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="panel">
-        <p id="winner"></p>
-        <br><br>
-        <p id="">RPS</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="panel">
-        <p id="playerTwoName"></p>
-        <br><br>
-        <button id="playerTwoRock"></button>
-        <br><br>
-        <button id="playerTwoPaper"></button>
-        <br><br>
-        <button id="playerTwoScissor"></button>
-        <br><br><br>
-        <span id="playerTwoWins"></span><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span><span id="playerTwoLosses"></span>
-      </div>
-    </div>
-  </div>
+
+    <br>
+
+    
+        <div id="contentImage"></div>
+        <div  style="color: #000080; text-align: center; font-family: monospace;" id="content"> </div>
+         <div  style="text-align: center; font-family: monospace; padding-bottom: 10px;" id="contentTwo"> </div>
+
+<div  style="color: #008000; text-align: center; font-family: monospace; padding-bottom: 10px;" id="contentAddedTwo"> </div>
+
+ <div  style="text-align: center; font-family: monospace; padding-bottom: 10px;" id="contentAdded"> </div>
+ 
+  
 </div>
 
 
-  
-	
-	<!-- <div class="row">
-
-		<! Sign-Up Panel-->
-		<!-- <div class="col-lg-6">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">New Member Sign-Up</h3>
-				</div>
-				<div class="panel-body"> -->
-					
-					<!-- Sign-up Form (note the various input "types")-->
-					<!-- <form role="form">
-					  <div class="form-group">
-					    <label for="text">Name:</label>
-					    <input type="text" class="form-control" id="nameinput">
-					  </div>
-					  <div class="form-group">
-					    <label for="text">Email:</label>
-					    <input type="email" class="form-control" id="emailinput">
-					  </div>
-					  <div class="form-group">
-					    <label for="text">Age:</label>
-					    <input type="number" class="form-control" id="ageinput">
-					  </div>
-					  <div class="form-group">
-						 <label for="comment">How did you hear about us?</label>
-						 <textarea class="form-control" rows="5" id="commentinput"></textarea>
-					   </div>
-					  <button type="submit" class="btn btn-default" id="addUser">Submit</button>
-					</form>
-
-				</div>
-			</div>
-		</div>
-
-		<! Most Recent Member Panel -->
-		<!-- <div class="col-lg-6">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Most Recent Member</h3>
-				</div>
-				<div class="panel-body" id="recentMember">
-					<h2 id="namedisplay"></h2>
-					<h4 id="emaildisplay"></h4>
-					<h4 id="agedisplay"></h4>
-					<p id="commentdisplay"></p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div> -->
-
-<!-- CHAT MARKUP -->
-  <div class="rockPaperScissorChat" id="chatContainer">
-	  <header class="well">Rock Paper Scissor Chat</header>
-	  <div class='rockPaperScissorChatToolbar'>
-      <br>
-	    <label for="nameInput2">Username:</label>
-	    <input type='text' id='nameChatInput' placeholder='enter a username...'>
-	  <ul id='examplechatMessages' class="examplechatMessages"></ul>
-    <br><br><br><br><br><br><br><br>
-	  <footer>
-	    <input type='text' id='messageInput' placeholder='Type a message...'>
-      <br><br>
-	  </footer>
-	</div>
-
-
-<!-- Latest compiled and minified CSS & JS -->
-<script src="https://code.jquery.com/jquery.js"></script>
-
-<script src="week_7_rockpaperscissor/assets/javascript/racquels_rockpaperscissor.js"> </script>
-	
 </body>
 </html>
